@@ -10,23 +10,26 @@ def guessWord(randomWord, correctGuess):
     correctGuessList = []
     for w in correctGuess:
         correctGuessList.append(w)
-    print("corectGuessList:", correctGuessList)
+    #print("corectGuessList:", correctGuessList)
 
     correctUserWord = ''
     allGuessList = []
 
     while correctUserWord != randomWord:
+        print(f"List of letters entered: {allGuessList}")
         userGuess = input("Please enter a single letter: ").lower()
+        
         if userGuess not in allGuessList:
             allGuessList.append(userGuess)       
-
+        else:
+            print(f"Please enter a new letter not already guessed.")
         index = 0
         for w in correctWordList:
             if userGuess == w:
                 correctGuessList[index] = userGuess
                 correctUserWord = ''.join(correctGuessList) 
             index +=1
-        print(correctUserWord)        
+        print(correctUserWord, '\n')        
 
     print(f"Congratulations you have guessed the word: {correctUserWord}")    
 
@@ -36,9 +39,9 @@ def main():
     randomWord = random.choices(randomWordList, k = 1)
     randomWordlen = len(randomWord[0])
     word = ''.join(randomWord)
-
     correctGuess = randomWordlen*'_'
     print(f"Guess the mystery word: {correctGuess}")
+    
     guessWord(word, correctGuess)
 
 
